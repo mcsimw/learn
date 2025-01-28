@@ -17,8 +17,8 @@ let
       baseModules = [
         { networking.hostName = sub.hostname; }
         sub.src
-#        localFlake.self.nixosModules.default
-#        localFlake.self.nixosModules.fakeFileSystems
+        localFlake.self.nixosModules.default
+        localFlake.self.nixosModules.fakeFileSystems
       ];
       isoModules = [
         {
@@ -59,7 +59,7 @@ let
 in
 {
   imports = [
-    #localFlake.treefmt-nix.flakeModule
+    localFlake.treefmt-nix.flakeModule
   ];
   options.genesis = {
     compootuers = lib.mkOption {

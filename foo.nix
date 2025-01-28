@@ -4,4 +4,5 @@ let
 in
 {
   flake.nixosModules.default = importApply ./lol.nix { localFlake = self; inherit withSystem; };
+  flake.nixosModules.genesis = importApply ./genesis.nix { localFlake = self; inherit withSystem; };
 }
