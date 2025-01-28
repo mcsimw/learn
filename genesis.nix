@@ -7,7 +7,7 @@
 }:
 let
 
-  modulesPath = "${localFlake.nixpkgs.outPath}/nixos/modules";
+  #modulesPath = "${localFlake.nixpkgs.outPath}/nixos/modules";
   configForSub =
     {
       sub,
@@ -17,12 +17,12 @@ let
       baseModules = [
         { networking.hostName = sub.hostname; }
         sub.src
-        localFlake.self.nixosModules.default
-        localFlake.self.nixosModules.fakeFileSystems
+        #localFlake.self.nixosModules.default
+        #localFlake.self.nixosModules.fakeFileSystems
       ];
       isoModules = [
         {
-          imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
+        #  imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
           boot.initrd.systemd.enable = lib.mkForce false;
           isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
@@ -59,7 +59,7 @@ let
 in
 {
   imports = [
-    localFlake.treefmt-nix.flakeModule
+    #localFlake.treefmt-nix.flakeModule
   ];
   options.genesis = {
     compootuers = lib.mkOption {
