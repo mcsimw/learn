@@ -1,4 +1,5 @@
 { pkgs, localFlake, config, ... }:
+{ inputs, ... }:
 {
   perSystem =
     {
