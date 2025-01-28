@@ -1,4 +1,4 @@
-{ localFlake, withSystem, ... }:
+{ localFlake, withSystem, flake, ... }:
 {
   config,
   lib,
@@ -33,13 +33,13 @@ let
         }
       ];
       nonIsoModules = [
-        localFlake.nixpkgs.nixosModules.readOnlyPkgs
+        flake.nixpkgs.nixosModules.readOnlyPkgs
         {nixpkgs.pkgs = withSystem sub.system ({pkgs, ...}: pkgs);}
       ];
     in
     withSystem sub.system (
       _:
-      localFlake.nixpkgs.lib.nixosSystem {
+      flake.nixpkgs.lib.nixosSystem {
         specialArgs = withSystem sub.system (
           {
             inputs',
