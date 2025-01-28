@@ -14,8 +14,6 @@ in
     inherit withSystem;
   };
   flake.nixosModules.genesis = importApply ./genesis.nix {
-    localFlake = self;
-    inherit withSystem;
     flake = inputs;
   };
   flake.nixosModules.poo = ./poo.nix;
