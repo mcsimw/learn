@@ -24,7 +24,7 @@ let
         {
         #  imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
           boot.initrd.systemd.enable = lib.mkForce false;
-          isoImage.squashfsCompression = "lz4";
+        #  isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
           nixpkgs = {
             hostPlatform = { inherit (sub) system; };
