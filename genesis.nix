@@ -8,7 +8,7 @@ flake:
 }:
 let
 
-  #modulesPath = "${localFlake.nixpkgs.outPath}/nixos/modules";
+  modulesPath = "${inputs.nixpkgs.outPath}/nixos/modules";
   configForSub =
     {
       sub,
@@ -18,14 +18,14 @@ let
       baseModules = [
         { networking.hostName = sub.hostname; }
         sub.src
-        #localFlake.self.nixosModules.default
-        #localFlake.self.nixosModules.fakeFileSystems
+#        flake.self.nixosModules.default
+#        flake.self.nixosModules.fakeFileSystems
       ];
       isoModules = [
         {
-        #  imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
+          imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
           boot.initrd.systemd.enable = lib.mkForce false;
-        #  isoImage.squashfsCompression = "lz4";
+          isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
           nixpkgs = {
             hostPlatform = { inherit (sub) system; };
@@ -35,7 +35,7 @@ let
       ];
       nonIsoModules = [
         inputs.nixpkgs.nixosModules.readOnlyPkgs
-        {nixpkgs.pkgs = withSystem sub.system ({pkgs, ...}: pkgs);}
+        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
     in
     withSystem sub.system (
@@ -48,11 +48,7 @@ let
             ...
           }:
           {
-            inherit
-              self'
-              inputs'
-              inputs
-              ;
+            inherit self' inputs' inputs;
           }
         );
         modules = baseModules ++ lib.optionals iso isoModules ++ lib.optionals (!iso) nonIsoModules;
@@ -61,10 +57,8 @@ let
 in
 {
   imports = [
-    #localFlake.treefmt-nix.flakeModule
+    flake.treefmt-nix.flakeModule
   ];
-
-
   options.genesis = {
     compootuers = lib.mkOption {
       type = lib.types.listOf (

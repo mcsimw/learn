@@ -1,5 +1,6 @@
-{ localFlake, withSystem }:
-{ lib, config, ... }: {
+{ withSystem }:
+{ lib, ... }:
+{
   options = {
     services.foo = {
       package = lib.mkOption {
