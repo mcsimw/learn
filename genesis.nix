@@ -33,13 +33,13 @@ let
         }
       ];
       nonIsoModules = [
-        inputs.nixpkgs.nixosModules.readOnlyPkgs
+        localFlake.nixpkgs.nixosModules.readOnlyPkgs
         {nixpkgs.pkgs = withSystem sub.system ({pkgs, ...}: pkgs);}
       ];
     in
     withSystem sub.system (
       _:
-      inputs.nixpkgs.lib.nixosSystem {
+      localFlake.nixpkgs.lib.nixosSystem {
         specialArgs = withSystem sub.system (
           {
             inputs',
