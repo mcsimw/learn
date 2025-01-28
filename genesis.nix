@@ -41,10 +41,10 @@ let
         #};}
       ];
     in
-    localFlake.withSystem sub.system (
+    withSystem sub.system (
       _:
       inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = localFlake.withSystem sub.system (
+        specialArgs = withSystem sub.system (
           {
             inputs',
             self',
