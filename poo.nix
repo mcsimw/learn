@@ -1,4 +1,4 @@
-{ pkgs, localFlake, ... }:
+{ pkgs, flake, localFlake, ... }:
 { inputs, ... }:
 {
   perSystem =
@@ -9,7 +9,7 @@
       ...
     }:
     {
-      _module.args.pkgs = import inputs.nixpkgs {
+      _module.args.pkgs = import flake.self.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
