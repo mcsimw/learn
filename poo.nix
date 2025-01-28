@@ -1,5 +1,5 @@
 { localFlake, withSystem, ... }:
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   perSystem =
     {
