@@ -62,6 +62,21 @@ in
   imports = [
     #localFlake.treefmt-nix.flakeModule
   ];
+
+  perSystem =
+    {
+      pkgs,
+      system,
+      inputs',
+      ...
+    }:
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    };
+
   options.genesis = {
     compootuers = lib.mkOption {
       type = lib.types.listOf (
