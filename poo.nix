@@ -1,4 +1,3 @@
-{ localFlake, ... }:
 { inputs, config, ... }:
 {
   perSystem =
