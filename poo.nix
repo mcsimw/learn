@@ -13,8 +13,5 @@
         inherit system;
         config.allowUnfree = true;
       };
-      config = {
-        nixpkgs.pkgs = withSystem system ({pkgs, ...}: pkgs);
-      };
     };
 }
