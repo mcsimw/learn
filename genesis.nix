@@ -1,4 +1,4 @@
-localFlake:
+{ localFlake, flake, ... }:
 {
   config,
   lib,
