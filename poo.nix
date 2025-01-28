@@ -1,4 +1,4 @@
-{ localFlake, nixpkgs, ... }
+localFlake:
 {
   lib,
   config,
