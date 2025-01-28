@@ -9,7 +9,7 @@
       ...
     }:
     {
-      _module.args.pkgs = import flake.self.nixpkgs {
+      _module.args.pkgs = import flake.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
