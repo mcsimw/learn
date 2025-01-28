@@ -19,7 +19,7 @@ let
         sub.src
         #localFlake.self.nixosModules.default
         #localFlake.self.nixosModules.fakeFileSystems
-        {nixpkgs.pkgs = withSystem system ({pkgs, ...}: pkgs);}
+        {nixpkgs.pkgs = withSystem sub.system ({pkgs, ...}: pkgs);}
       ];
       isoModules = [
         {
