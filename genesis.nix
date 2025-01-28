@@ -85,19 +85,6 @@ in
       );
     };
   };
-  perSystem =
-    {
-      pkgs,
-      system,
-      inputs',
-      ...
-    }:
-    {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-    };
   config.flake.nixosConfigurations = builtins.listToAttrs (
     lib.concatMap (
       sub:
