@@ -1,4 +1,4 @@
-{ pkgs, localFlake, config, ... }:
+{ pkgs, localFlake, ... }:
 { inputs, ... }:
 {
   perSystem =
