@@ -34,10 +34,10 @@ let
       ];
       nonIsoModules = [
         flake.nixpkgs.nixosModules.readOnlyPkgs
-        nixpkgs.pkgs = import inputs.nixpkgs {
+        {nixpkgs.pkgs = import inputs.nixpkgs {
           system = sub.system;
           config.allowUnfree = true;
-        };
+        };}
       ];
     in
     withSystem sub.system (
