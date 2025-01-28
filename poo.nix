@@ -14,7 +14,7 @@ localFlake:
       ...
     }:
     {
-      _module.args.pkgs = import localFlake.inputs.nixpkgs {
+      _module.args.pkgs = import localFlake.nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
