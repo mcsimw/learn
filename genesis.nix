@@ -1,4 +1,4 @@
-{ localFlake, withSystem, flake, ... }:
+localFlake:
 {
   config,
   lib,
