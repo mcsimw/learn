@@ -1,4 +1,4 @@
-{ flake-parts-lib, self, withSystem, pkgs, ... }:
+{ flake-parts-lib, self, withSystem, pkgs, inputs, ... }:
 let
   inherit (flake-parts-lib) importApply;
 in
