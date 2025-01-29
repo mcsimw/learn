@@ -93,7 +93,7 @@ in
               };
             }
           ]
-      ) config.genesis.compootuers
+      ) (config.genesis.compootuers or [ ])
     );
     perSystem =
       {
