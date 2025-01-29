@@ -7,7 +7,6 @@
   ...
 }:
 let
-
   modulesPath = "${inputs.nixpkgs.outPath}/nixos/modules";
   configForSub =
     {
@@ -16,9 +15,9 @@ let
     }:
     let
       baseModules = [
-        { 
-          networking.hostName = sub.hostname; 
-          nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); 
+        {
+          networking.hostName = sub.hostname;
+          nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs);
         }
         sub.src
         #        flake.self.nixosModules.default
@@ -40,11 +39,7 @@ let
       _:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = withSystem sub.system (
-          {
-            inputs',
-            self',
-            ...
-          }:
+          { inputs', self', ... }:
           {
             inherit self' inputs' inputs;
           }
@@ -54,9 +49,6 @@ let
     );
 in
 {
-  imports = [
-    flake.treefmt-nix.flakeModule
-  ];
   options.genesis = {
     compootuers = lib.mkOption {
       type = lib.types.listOf (
@@ -73,6 +65,7 @@ in
               type = lib.types.str;
               default = "x86_64-linux";
             };
+            default = [];
           };
         }
       );
@@ -120,4 +113,7 @@ in
         };
       };
   };
+  imports = [
+    flake.treefmt-nix.flakeModule
+  ];
 }
