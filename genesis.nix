@@ -107,9 +107,9 @@ in
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = [
-            flake.nix.overlays.default
-            flake.emacs-overlay.overlays.default
+          overlays = with flake; [
+            nix.overlays.default
+            emacs-overlay.overlays.default
           ];
         };
       };
