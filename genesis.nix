@@ -32,7 +32,7 @@ let
         }
       ];
       nonIsoModules = [
-        inputs.nixpkgs.nixosModules.readOnlyPkgs
+#        inputs.nixpkgs.nixosModules.readOnlyPkgs
       ];
     in
     withSystem sub.system (
