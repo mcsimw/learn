@@ -27,15 +27,15 @@ let
           boot.initrd.systemd.enable = lib.mkForce false;
           isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
-          nixpkgs = {
-            hostPlatform = { inherit (sub) system; };
-            config.allowUnfree = true;
-          };
+          #nixpkgs = {
+          #  hostPlatform = { inherit (sub) system; };
+          #  config.allowUnfree = true;
+          #};
+          inputs.nixpkgs.nixosModules.readOnlyPkgs
+        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
         }
       ];
       nonIsoModules = [
-        inputs.nixpkgs.nixosModules.readOnlyPkgs
-        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
     in
     withSystem sub.system (
