@@ -65,7 +65,7 @@ in
               type = lib.types.str;
               default = "x86_64-linux";
             };
-            default = [];
+            default = [ ];
           };
         }
       );
@@ -75,26 +75,23 @@ in
     flake.nixosConfigurations = builtins.listToAttrs (
       lib.concatMap (
         sub:
-        if sub.hostname == null then
-          [ ]
-        else
-          [
-            {
-              name = sub.hostname;
-              value = configForSub {
-                inherit sub;
-                iso = false;
-              };
-            }
-            {
-              name = "${sub.hostname}-iso";
-              value = configForSub {
-                inherit sub;
-                iso = true;
-              };
-            }
-          ]
-      ) config.genesis.compootuers
+        lib.mkIf (sub.hostname != null) [
+          {
+            name = sub.hostname;
+            value = configForSub {
+              inherit sub;
+              iso = false;
+            };
+          }
+          {
+            name = "${sub.hostname}-iso";
+            value = configForSub {
+              inherit sub;
+              iso = true;
+            };
+          }
+        ]
+      ) config.genesis.computers
     );
     perSystem =
       {
