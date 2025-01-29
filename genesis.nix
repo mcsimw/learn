@@ -20,6 +20,8 @@ let
         sub.src
         #        flake.self.nixosModules.default
         #        flake.self.nixosModules.fakeFileSystems
+          inputs.nixpkgs.nixosModules.readOnlyPkgs
+        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
       isoModules = [
         {
@@ -31,8 +33,6 @@ let
           #  hostPlatform = { inherit (sub) system; };
           #  config.allowUnfree = true;
           #};
-          inputs.nixpkgs.nixosModules.readOnlyPkgs
-        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
         }
       ];
       nonIsoModules = [
