@@ -115,6 +115,7 @@ in
           config.allowUnfree = true;
           overlays = [
             flake.nix.overlays.default
+            flake.emacs-overlay.overlays.default
           ];
         };
       };
