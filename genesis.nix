@@ -17,11 +17,7 @@ let
       baseModules = [
         {
           networking.hostName = sub.hostname;
-#          nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs);
-           nixpkgs = {
-             hostPlatform = sub.system;
-             config.allowUnfree = true;
-           };
+          nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs);
         }
         sub.src
         #        flake.self.nixosModules.default
