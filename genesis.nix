@@ -65,6 +65,7 @@ in
               type = lib.types.str;
               default = "x86_64-linux";
             };
+            default = lib.mkDefault [ ];
           };
         }
       );
@@ -93,7 +94,7 @@ in
               };
             }
           ]
-      ) (config.genesis.compootuers or [ ])
+      ) config.genesis.compootuers
     );
     perSystem =
       {
