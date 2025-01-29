@@ -11,5 +11,8 @@ in
     genesis = importApply ./genesis.nix {
       flake = inputs;
     };
+    neogenesis = importApply ./neogenesis.nix {
+      flake = inputs;
+    };
   };
 }
