@@ -35,7 +35,5 @@
         inputs.treefmt-nix.flakeModule
         ./foo.nix
       ];
-      flake = {
-      };
     };
 }

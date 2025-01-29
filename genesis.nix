@@ -80,28 +80,42 @@ in
       );
     };
   };
-  config.flake.nixosConfigurations = builtins.listToAttrs (
-    lib.concatMap (
-      sub:
-      if sub.hostname == null then
-        [ ]
-      else
-        [
-          {
-            name = sub.hostname;
-            value = configForSub {
-              inherit sub;
-              iso = false;
-            };
-          }
-          {
-            name = "${sub.hostname}-iso";
-            value = configForSub {
-              inherit sub;
-              iso = true;
-            };
-          }
-        ]
-    ) config.genesis.compootuers
-  );
+  config = {
+    flake.nixosConfigurations = builtins.listToAttrs (
+      lib.concatMap (
+        sub:
+        if sub.hostname == null then
+          [ ]
+        else
+          [
+            {
+              name = sub.hostname;
+              value = configForSub {
+                inherit sub;
+                iso = false;
+              };
+            }
+            {
+              name = "${sub.hostname}-iso";
+              value = configForSub {
+                inherit sub;
+                iso = true;
+              };
+            }
+          ]
+      ) config.genesis.compootuers
+    );
+    perSystem =
+      {
+        pkgs,
+        system,
+        ...
+      }:
+      {
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+  };
 }
