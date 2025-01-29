@@ -16,7 +16,10 @@ let
     }:
     let
       baseModules = [
-        { networking.hostName = sub.hostname; }
+        { 
+          networking.hostName = sub.hostname; 
+          nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); 
+        }
         sub.src
         #        flake.self.nixosModules.default
         #        flake.self.nixosModules.fakeFileSystems
@@ -27,15 +30,10 @@ let
           boot.initrd.systemd.enable = lib.mkForce false;
           isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
-          nixpkgs = {
-            hostPlatform = { inherit (sub) system; };
-            config.allowUnfree = true;
-          };
         }
       ];
       nonIsoModules = [
         inputs.nixpkgs.nixosModules.readOnlyPkgs
-        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
     in
     withSystem sub.system (
