@@ -20,8 +20,6 @@ let
         sub.src
         #        flake.self.nixosModules.default
         #        flake.self.nixosModules.fakeFileSystems
-          inputs.nixpkgs.nixosModules.readOnlyPkgs
-        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
       isoModules = [
         {
@@ -29,13 +27,15 @@ let
           boot.initrd.systemd.enable = lib.mkForce false;
           isoImage.squashfsCompression = "lz4";
           networking.wireless.enable = lib.mkForce false;
-          #nixpkgs = {
-          #  hostPlatform = { inherit (sub) system; };
-          #  config.allowUnfree = true;
-          #};
+          nixpkgs = {
+            hostPlatform = { inherit (sub) system; };
+            config.allowUnfree = true;
+          };
         }
       ];
       nonIsoModules = [
+        inputs.nixpkgs.nixosModules.readOnlyPkgs
+        { nixpkgs.pkgs = withSystem sub.system ({ pkgs, ... }: pkgs); }
       ];
     in
     withSystem sub.system (
@@ -115,6 +115,9 @@ in
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          overlays = [
+            flake.nix.overlays.default
+          ];
         };
       };
   };
