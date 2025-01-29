@@ -91,7 +91,7 @@ in
             };
           }
         ]
-      ) config.genesis.computers
+      ) config.genesis.compootuers
     );
     perSystem =
       {
