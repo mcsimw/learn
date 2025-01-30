@@ -36,7 +36,7 @@
       };
       imports = [
         inputs.treefmt-nix.flakeModule
-        ./flake-module.nix
+        ./modules
       ];
     };
 }
