@@ -30,7 +30,7 @@ let
         sub.src
         flake.self.nixosModules.sane
         flake.self.nixosModules.nix-conf
-        #        flake.self.nixosModules.fakeFileSystems
+        flake.self.nixosModules.fakeFileSystems
         flake.nixos-facter-modules.nixosModules.facter
       ];
       isoModules = [

@@ -11,6 +11,9 @@ in
     genesis = importApply ./nixos/genesis.nix {
       flake = inputs;
     };
+    fakeFileSystems = importApply ./nixos/fakeFileSystems {
+      flake = inputs;
+    };
     sane = ./nixos/sane.nix;
     nix-conf = ./nixos/nix-conf.nix;
     impermanence = importApply ./nixos/impermanence.nix {
