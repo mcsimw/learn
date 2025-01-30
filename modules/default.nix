@@ -13,6 +13,8 @@ in
     };
     sane = ./nixos/sane.nix;
     nix-conf = ./nixos/nix-conf.nix;
-    impermanence = ./nixos/impermanence.nix;
+    impermanence = importApply ./nixos/impermanence.nix {
+      flake = inputs;
+    };
   };
 }

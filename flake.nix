@@ -14,6 +14,7 @@
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
