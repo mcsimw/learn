@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    flake.nixosModules.impermanence
+    flake.impermanence.nixosModules.impermanence
   ];
   config = {
     environment.persistence."/persist" = {
