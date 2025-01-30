@@ -15,6 +15,10 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     impermanence.url = "github:nix-community/impermanence";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows  = "nixpkgs";
+    };
   };
 
   outputs =
